@@ -26,7 +26,7 @@ class LaravelPermissionJsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::directive('permissions', function () {
-            $permissionsApplied = (Auth::user() !== null) ? Auth::user()->getAllPermissions()->pluck('name')->toJson() : [];
+            $permissionsApplied = (Auth::user() !== null) ? Auth::user()->getAllPermissions()->pluck('name')->toJson() : json_encode([]);
             return "<!-- Permissions -->
             <script type='text/javascript'>
             const permissionsApplied = $permissionsApplied;
